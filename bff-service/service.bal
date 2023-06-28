@@ -60,6 +60,13 @@ service / on new http:Listener(9090) {
         return result;
     }
 
+    resource function get fhir/r4/metadata(http:RequestContext ctx, http:Request request) returns json|error {
+
+        // Invoke the metadatafhir service
+        json result = check metadatafhirClient->get("/fhir/r4/metadata");
+        return result;
+    }
+
     resource function post fhir/r4/patient(http:RequestContext ctx, http:Request request) returns json|error {
 
         // Get the payload from the request
